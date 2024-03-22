@@ -118,12 +118,12 @@ std::ostream& gne::operator<<(std::ostream& os, const Graph& graph)
 	os << "digraph " << graph._name << " {\n";
 	
 	for (int i = 0; i < graph._nodesSize; i++)
-		os << graph._nodes[i] << "\n";
+		os << "\t" << *graph._nodes[i] << "\n";
 
 	os << "\n";
 
 	for (int i = 0; i < graph._edgesSize; i++)
-		os << graph._edges[i] << "\n";
+		os << "\t" << *graph._edges[i] << "\n";
 
 	os << "}";
 
