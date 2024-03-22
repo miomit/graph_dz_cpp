@@ -43,3 +43,8 @@ std::ostream& gne::operator<<(std::ostream& os, const Edge& edge)
 
     return os;
 }
+
+bool gne::operator==(const Edge& edge1, const Edge& edge2)
+{
+    return edge1._hashCode == edge1._hashCode;
+}

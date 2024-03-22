@@ -25,6 +25,7 @@ namespace gne
 		char* getLabel() { return _label; }
 
 		friend std::ostream& operator<<(std::ostream& os, const Edge& edge);
+		friend bool operator==(const Edge& edge1, const Edge& edge2);
 	private:
 		int _hashCode;
 		TypeEdge _typeEdge;
