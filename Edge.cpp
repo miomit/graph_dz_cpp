@@ -12,7 +12,14 @@ gne::Edge::Edge(Node* node1, Node* node2, TypeEdge typeEdge, char label[50])
 
     strcpy_s(this->_label, sizeof(this->_label), label);
 
-    this->_hashCode = my_stl::two_str_to_hash(node1->getName(), node2->getName());
+    if (typeEdge == UNORIENTED)
+    {
+        this->_hashCode = my_stl::two_str_to_hash_sort(node1->getName(), node2->getName());
+    }
+    else
+    {
+        this->_hashCode = my_stl::two_str_to_hash(node1->getName(), node2->getName());
+    }
 }
 
 bool gne::Edge::isNodeExist(Node node)
