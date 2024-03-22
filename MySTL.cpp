@@ -17,6 +17,18 @@ int my_stl::two_str_to_hash(const char* str1, const char* str2)
     return hash1 + hash2;
 }
 
+int my_stl::two_str_to_hash_sort(const char* str1, const char* str2)
+{
+    int hash1 = str_to_hash(str1);
+    int hash2 = str_to_hash(str2);
+
+    int hash = max(hash1, hash2);
+
+    hash *= pow(10, count_num(min(hash1, hash2)));
+
+    return hash + min(hash1, hash2);
+}
+
 int my_stl::count_num(int n)
 {
     int count = 1;
