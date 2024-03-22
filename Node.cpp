@@ -24,3 +24,8 @@ std::ostream& gne::operator<<(std::ostream& os, const Node& node)
 	os << node._name << " [label=\"" << node._label << "\"]";
 	return os;
 }
+
+bool gne::operator==(const Node& node1, const Node& node2)
+{
+	return node1._hashCode == node2._hashCode;
+}

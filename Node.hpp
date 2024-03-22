@@ -14,6 +14,7 @@ namespace gne
 		int getHashCode() { return _hashCode; }
 
 		friend std::ostream& operator<<(std::ostream& os, const Node& node);
+		friend bool operator==(const Node& node1, const Node& node2);
 	private:
 		int _hashCode;
 		char _name[50], _label[50];
