@@ -132,11 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Edge.hpp" />
-    <ClInclude Include="Hash.hpp" />
+    <ClInclude Include="MySTL.hpp" />
     <ClInclude Include="Node.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MySTL.cpp" />
     <ClCompile Include="Node.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
