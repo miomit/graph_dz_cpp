@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Edge.hpp"
+#include "Graph.hpp"
 
 int main()
 {
@@ -18,15 +18,27 @@ int main()
 
 	name[0] = 'E';
 
-	auto k = gne::Edge(a, b, gne::ORIENTED, name);
-	auto k2 = gne::Edge(b, a, gne::ORIENTED, name);
+	auto k = new gne::Edge(a, b, gne::UNORIENTED, name);
+	auto k2 = new gne::Edge(b, a, gne::ORIENTED, name);
 
 
-	std::cout << k << "; hash = " << k.getHashCode() << std::endl;
-	std::cout << k2 << "; hash = " << k2.getHashCode() << std::endl;
+	std::cout << *k << "; hash = " << k->getHashCode() << std::endl;
+	std::cout << *k2 << "; hash = " << k2->getHashCode() << std::endl;
 
-	std::cout << k.isNodeExist(*c) << std::endl;
-	std::cout << k.isNodeExist(*d) << std::endl;
-	
+	std::cout << (*k2 == *k) << std::endl;
+
+	auto graph = gne::Graph(name);
+
+	graph.add(k);
+	graph.add(k);
+	graph.add(k);
+	graph.add(k);
+
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	for (int i = 0; i < graph.getEdgesSize(); i++)
+		std::cout << *graph.getEdges()[i] << "; hash = " << graph.getEdges()[i]->getHashCode() << std::endl;
+
 	return 0;
 }
