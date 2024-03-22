@@ -23,11 +23,6 @@ bool gne::Edge::isNodeExist(Node node)
     return false;
 }
 
-void gne::Edge::setTypeEdge(TypeEdge typeEdge)
-{
-    this->_typeEdge = typeEdge;
-}
-
 std::ostream& gne::operator<<(std::ostream& os, const Edge& edge)
 {
     os << edge._node1->getName();

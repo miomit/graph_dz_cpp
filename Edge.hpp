@@ -15,8 +15,6 @@ namespace gne
 
 		bool isNodeExist(Node node);
 
-		void setTypeEdge(TypeEdge typeEdge);
-
 		int getHashCode() { return _hashCode; }
 
 		TypeEdge getTypeEdge() { return _typeEdge; }
