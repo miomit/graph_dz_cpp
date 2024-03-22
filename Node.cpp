@@ -18,3 +18,9 @@ gne::Node::Node(char name[50], char label[50])
 
 	this->_hashCode = my_stl::str_to_hash(name);
 }
+
+std::ostream& gne::operator<<(std::ostream& os, const Node& node)
+{
+	os << node._name << " [label=\"" << node._label << "\"]";
+	return os;
+}

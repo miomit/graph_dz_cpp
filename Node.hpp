@@ -1,3 +1,5 @@
+#include <iostream>
+
 namespace gne
 {
 	class Node
@@ -10,6 +12,8 @@ namespace gne
 		char* getLabel() { return _label; }
 
 		int getHashCode() { return _hashCode; }
+
+		friend std::ostream& operator<<(std::ostream& os, const Node& node);
 	private:
 		int _hashCode;
 		char _name[50], _label[50];
