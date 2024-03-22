@@ -18,3 +18,8 @@ bool gne::Edge::isNodeExist(Node node)
 
     return false;
 }
+
+void gne::Edge::setTypeEdge(TypeEdge typeEdge)
+{
+    this->_typeEdge = typeEdge;
+}
