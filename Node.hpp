@@ -3,6 +3,7 @@ namespace gne
 	class Node
 	{
 	public:
+		Node(char name[50]);
 		Node(char name[50], char label[50]);
 
 		char* getName() { return _name; }
