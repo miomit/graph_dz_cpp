@@ -11,7 +11,7 @@ namespace gne
 	class Edge
 	{
 	public:
-		Edge(Node* node1, Node* node2, TypeEdge typeEdge = UNORIENTED, char label[50]);
+		Edge(Node* node1, Node* node2, TypeEdge typeEdge, char label[50]);
 
 		bool isNodeExist(Node node);
 
