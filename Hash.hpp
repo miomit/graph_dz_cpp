@@ -1,4 +1,4 @@
-namespace hask 
+namespace hash 
 {
     unsigned int str_to_hash(const char* str)
     {
