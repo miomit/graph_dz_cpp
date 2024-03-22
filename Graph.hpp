@@ -11,6 +11,8 @@ namespace gne
 
 		void add(Node* node);
 
+		void remove(Node* node);
+
 		char* getName() { return _name; }
 		Node** getNodes() { return _nodes; }
 		unsigned int getNodesSize() { return _nodesSize; }

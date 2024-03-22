@@ -27,3 +27,27 @@ void gne::Graph::add(Node* node)
 	this->_nodes = newNodes;
 	this->_nodesSize++;
 }
+
+void gne::Graph::remove(Node* node)
+{
+	for (int i = 0; i < this->_nodesSize; i++)
+	{
+		if (*this->_nodes[i] == *node)
+		{
+			auto newNodes = new Node*[this->_nodesSize - 1];
+			
+			for (int j = 0; j < this->_nodesSize; j++) {
+				if (j < i) newNodes[j] = this->_nodes[j];
+				if (j > i) newNodes[j - 1] = this->_nodes[j];
+			}
+
+			delete this->_nodes[i];
+			delete[] this->_nodes;
+
+			this->_nodes = newNodes;
+			this->_nodesSize--;
+
+			break;
+		}
+	}
+}
