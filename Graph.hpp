@@ -10,8 +10,10 @@ namespace gne
 		Graph(char name[50]);
 
 		void add(Node* node);
+		void add(Edge* edge);
 
 		void remove(Node* node);
+		void remove(Edge* edge);
 
 		char* getName() { return _name; }
 		Node** getNodes() { return _nodes; }
@@ -23,5 +25,8 @@ namespace gne
 
 		Node** _nodes;
 		unsigned int _nodesSize;
+
+		Edge** _edges;
+		unsigned int _edgesSize;
 	};
 }
