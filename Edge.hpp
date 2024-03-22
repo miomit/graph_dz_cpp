@@ -25,6 +25,8 @@ namespace gne
 		Node* getNode2() { return _node2; }
 
 		char* getLabel() { return _label; }
+
+		friend std::ostream& operator<<(std::ostream& os, const Edge& edge);
 	private:
 		int _hashCode;
 		TypeEdge _typeEdge;

@@ -27,3 +27,17 @@ void gne::Edge::setTypeEdge(TypeEdge typeEdge)
 {
     this->_typeEdge = typeEdge;
 }
+
+std::ostream& gne::operator<<(std::ostream& os, const Edge& edge)
+{
+    os << edge._node1->getName();
+
+    if (edge._typeEdge == UNORIENTED) os << " - ";
+    else os << " -> ";
+
+    os << edge._node2->getName();
+
+    os << " [label=\"" << edge._label << "\"]";
+
+    return os;
+}
