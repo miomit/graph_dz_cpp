@@ -12,13 +12,14 @@ namespace gne
 		void add(Node* node);
 
 		char* getName() { return _name; }
+		Node** getNodes() { return _nodes; }
 		unsigned int getNodesSize() { return _nodesSize; }
 
 		friend std::ostream& operator<<(std::ostream& os, const Graph& graph);
 	private:
 		char _name[50];
 
-		Node** _nodes{nullptr};
+		Node** _nodes;
 		unsigned int _nodesSize;
 	};
 }
