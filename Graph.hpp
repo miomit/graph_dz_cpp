@@ -16,8 +16,12 @@ namespace gne
 		void remove(Edge* edge);
 
 		char* getName() { return _name; }
+
 		Node** getNodes() { return _nodes; }
 		unsigned int getNodesSize() { return _nodesSize; }
+
+		Edge** getEdges() { return _edges; }
+		unsigned int getEdgesSize() { return _edgesSize; }
 
 		friend std::ostream& operator<<(std::ostream& os, const Graph& graph);
 	private:
