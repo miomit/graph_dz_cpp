@@ -48,7 +48,7 @@ int main()
 		std::cout << "$ ";
 		if (n == 0)
 		{
-			std::cout << graph << std::endl;
+			std::cout << *graph << std::endl;
 			continue;
 		}
 		if (n == 1)
