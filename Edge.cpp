@@ -34,7 +34,7 @@ std::ostream& gne::operator<<(std::ostream& os, const Edge& edge)
 {
     os << edge._node1->getName();
 
-    if (edge._typeEdge == UNORIENTED) os << " - ";
+    if (edge._typeEdge == UNORIENTED) os << " -- ";
     else os << " -> ";
 
     os << edge._node2->getName();
