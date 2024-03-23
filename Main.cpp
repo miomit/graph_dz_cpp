@@ -105,7 +105,7 @@ int main()
 		}
 		else if (n == 2)
 		{
-			if (cmd[0] == '-')
+			if (cmd[0] == '>')
 			{
 				auto node1 = new gne::Node(buff);
 
@@ -126,7 +126,7 @@ int main()
 		} 
 		else if (n == 3)
 		{
-			if (cmd[0] == '-')
+			if (cmd[0] == '>')
 			{
 				auto node1 = new gne::Node(buff);
 
