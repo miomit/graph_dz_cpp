@@ -215,6 +215,17 @@ gne::Node** gne::Graph::getMaxNodeEdges(unsigned int* node_count)
 	return res;
 }
 
+void gne::Graph::operator delete[](void* graph)
+{
+		
+	for (int i = ((gne::Graph*)graph)->getNodesSize(); i > 0; i--)
+	{
+		((gne::Graph*)graph)->remove(((gne::Graph*)graph)->getNodes()[0]);
+	}
+}
+
+
+
 std::ostream& gne::operator<<(std::ostream& os, const Graph& graph)
 {
 	if (graph._typeEdge == ORIENTED) os << "digraph";

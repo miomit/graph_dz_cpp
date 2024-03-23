@@ -26,6 +26,8 @@ namespace gne
 		Edge** getEdges() { return _edges; }
 		unsigned int getEdgesSize() { return _edgesSize; }
 
+		void operator delete[](void* graph);
+
 		friend std::ostream& operator<<(std::ostream& os, const Graph& graph);
 	private:
 		TypeEdge _typeEdge;
