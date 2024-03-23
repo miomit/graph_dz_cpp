@@ -10,4 +10,6 @@ namespace my_stl
     int pow(int n, int exp);
     int max(int a, int b);
     int min(int a, int b);
+
+    char** split(char* str, char delim, int* count);
 }

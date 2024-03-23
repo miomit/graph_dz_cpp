@@ -1,4 +1,5 @@
 #include "MySTL.hpp"
+#include <string.h>
 
 int my_stl::str_to_hash(const char* str)
 {
@@ -61,5 +62,35 @@ int my_stl::max(int a, int b)
 int my_stl::min(int a, int b)
 {
     return a <= b ? a : b;
+}
+
+char** my_stl::split(char* str, char delim, int* count)
+{
+    *count = 0;
+    char* p = str;
+
+    for (char* p = str; *p; p++)
+    {
+        if (*p == delim) (*count)++;
+    }
+
+    (*count)++;
+
+    char** tokens = new char*[(*count) * sizeof(char*)];
+
+    int token_index = 0;
+    char* next_token1 = NULL;
+
+    char* token = strtok_s(str, &delim, &next_token1);
+
+    while (token != NULL)
+    {
+        tokens[token_index++] = token;
+        token = strtok_s(NULL, &delim, &next_token1);
+    }
+
+    tokens[token_index] = NULL;
+
+    return tokens;
 }
 
