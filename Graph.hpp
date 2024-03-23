@@ -9,8 +9,8 @@ namespace gne
 	public:
 		Graph(TypeEdge typeEdge);
 
-		void add(Node* node);
-		void add(Edge* edge);
+		bool add(Node* node);
+		bool add(Edge* edge);
 
 		void remove(Node* node);
 		void remove(Edge* edge);

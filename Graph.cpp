@@ -11,11 +11,11 @@ gne::Graph::Graph(TypeEdge typeEdge)
 	this->_edges = nullptr;
 }
 
-void gne::Graph::add(Node* node)
+bool gne::Graph::add(Node* node)
 {
 	for (int i = 0; i < this->_nodesSize; i++)
 	{
-		if (*this->_nodes[i] == *node) return;
+		if (*this->_nodes[i] == *node) return false;
 	}
 
 	auto newNodes = new Node*[this->_nodesSize + 1];
@@ -31,15 +31,17 @@ void gne::Graph::add(Node* node)
 
 	this->_nodes = newNodes;
 	this->_nodesSize++;
+
+	return true;
 }
 
-void gne::Graph::add(Edge* edge)
+bool gne::Graph::add(Edge* edge)
 {
-	if (edge->getTypeEdge() != this->_typeEdge) return;
+	if (edge->getTypeEdge() != this->_typeEdge) return false;
 
 	for (int i = 0; i < this->_edgesSize; i++)
 	{
-		if (*this->_edges[i] == *edge) return;
+		if (*this->_edges[i] == *edge) return false;
 	}
 
 	auto newEdges = new Edge *[this->_edgesSize + 1];
@@ -55,6 +57,8 @@ void gne::Graph::add(Edge* edge)
 
 	this->_edges = newEdges;
 	this->_edgesSize++;
+
+	return true;
 }
 
 void gne::Graph::remove(Node* node)
