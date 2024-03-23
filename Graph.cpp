@@ -1,8 +1,8 @@
 #include "Graph.hpp"
 
-gne::Graph::Graph(char name[50])
+gne::Graph::Graph(TypeEdge typeEdge)
 {
-	strcpy_s(this->_name, sizeof(this->_name), name);
+	this->_typeEdge = typeEdge;
 
 	this->_nodesSize = 0;
 	this->_nodes = nullptr;
@@ -35,17 +35,11 @@ void gne::Graph::add(Node* node)
 
 void gne::Graph::add(Edge* edge)
 {
+	if (edge->getTypeEdge() != this->_typeEdge) return;
+
 	for (int i = 0; i < this->_edgesSize; i++)
 	{
 		if (*this->_edges[i] == *edge) return;
-
-		if (this->_edges[i]->getTypeEdge() != edge->getTypeEdge()) 
-		{
-			if (this->_edges[i]->isNodeExist(*edge->getNode1()) && this->_edges[i]->isNodeExist(*edge->getNode2()))
-			{
-				return;
-			}
-		}
 	}
 
 	auto newEdges = new Edge *[this->_edgesSize + 1];
@@ -115,7 +109,10 @@ void gne::Graph::remove(Edge* edge)
 
 std::ostream& gne::operator<<(std::ostream& os, const Graph& graph)
 {
-	os << "digraph " << graph._name << " {\n";
+	if (graph._typeEdge == ORIENTED) os << "digraph";
+	else os << "graph";
+
+	os << " {\n";
 	
 	for (int i = 0; i < graph._nodesSize; i++)
 		os << "\t" << *graph._nodes[i] << "\n";
