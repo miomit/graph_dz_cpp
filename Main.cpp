@@ -45,12 +45,15 @@ int main()
 
 		std::cout << "0) Print graph\n1) [Opr] [Node]\n2) [Opr] [Node] [Node]\n3) [Opr] [Node] [Node] [Text]\n> ";
 		std::cin >> n;
-		std::cout << "$ ";
+		
 		if (n == 0)
 		{
 			std::cout << *graph << std::endl;
 			continue;
 		}
+
+		std::cout << "$ ";
+
 		if (n == 1)
 		{
 			std::cin >> cmd >> buff;
