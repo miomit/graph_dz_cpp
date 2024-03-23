@@ -1,4 +1,5 @@
 #include "Graph.hpp"
+#include "MySTL.hpp"
 
 #include <fstream>
 #include <cstringt.h>
@@ -46,5 +47,19 @@ int main()
 	file.close();
 
 	system("dot -Tpng -Gdpi=300é C:\\Users\\user_\\out.dot -o C:\\Users\\user_\\out.png");
+
+	char text[] = "12|13";
+	char d[] = "|";
+
+	int num_tokens;
+
+	char** tokens = my_stl::split(text, '|', &num_tokens);
+
+	printf("count: %d\n", num_tokens);
+	printf("tokens:\n");
+	for (int i = 0; i < num_tokens; i++) {
+		printf("%s\n", tokens[i]);
+	}
+	std::cout << "---";
 	return 0;
 }
