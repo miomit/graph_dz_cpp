@@ -123,6 +123,20 @@ int main()
 				delete node1;
 				delete node2;
 			}
+			else if (cmd[0] == '-')
+			{
+				auto node1 = new gne::Node(buff);
+				auto node2 = new gne::Node(buff2);
+
+				strcpy_s(buff, sizeof(buff), "");
+				auto edge = new gne::Edge(node1, node2, typeGraph, buff);
+
+				graph->remove(edge);
+
+				delete edge;
+				delete node1;
+				delete node2;
+			}
 		} 
 		else if (n == 3)
 		{
