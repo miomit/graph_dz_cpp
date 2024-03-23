@@ -44,6 +44,16 @@ bool gne::Graph::add(Edge* edge)
 		if (*this->_edges[i] == *edge) return false;
 	}
 
+	auto node1 = findNode(edge->getNode1());
+	auto node2 = findNode(edge->getNode2());
+	auto label = edge->getLabel();
+
+	if (node1 == nullptr || node2 == nullptr) return false;
+
+	delete edge;
+
+	edge = new Edge(node1, node2, this->_typeEdge, label);
+
 	auto newEdges = new Edge *[this->_edgesSize + 1];
 
 	for (int i = 0; i < this->_edgesSize; i++)
