@@ -79,6 +79,15 @@ void gne::Graph::remove(Node* node)
 	{
 		if (*this->_nodes[i] == *node)
 		{
+			for (int i = 0; i < this->_edgesSize; i++)
+			{
+				if (this->_edges[i]->isNodeExist(*node))
+				{
+					this->remove(this->_edges[i]);
+					i--;
+				}
+			}
+
 			auto newNodes = new Node*[this->_nodesSize - 1];
 			
 			for (int j = 0; j < this->_nodesSize; j++) 
