@@ -182,10 +182,10 @@ gne::Node** gne::Graph::getMaxNodeEdges(unsigned int* node_count)
 	{
 		auto e = findEdgesByNode(this->_nodes[i], &count);
 
+		max_count = my_stl::max(max_count, count);
+
 		if (count == max_count) (*node_count)++;
 		else *node_count = 1;
-
-		max_count = my_stl::max(max_count, count);
 
 		delete[] e;
 	}
