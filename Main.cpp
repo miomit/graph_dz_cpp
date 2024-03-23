@@ -43,17 +43,17 @@ int main()
 	{
 		graph_to_png(graph);
 
-		std::cout << "0) Print graph\n1) [Opr] [Node]\n2) [Opr] [Node] [Node]\n3) [Opr] [Node] [Node] [Text]\n> ";
+		std::cout << "0) [Opr]\n1) [Opr] [Node]\n2) [Opr] [Node] [Node]\n3) [Opr] [Node] [Node] [Text]\n4) Print graph\n> ";
 		std::cin >> n;
 		
-		if (n == 0)
+		if (n == 4)
 		{
 			std::cout << *graph << std::endl;
 			continue;
 		}
 
 		std::cout << "$ ";
-
+		
 		if (n == 1)
 		{
 			std::cin >> cmd >> buff;
@@ -70,8 +70,24 @@ int main()
 		{
 			continue;
 		}
-		
-		if (n == 1) 
+
+		if (n == 0)
+		{
+			if (cmd[0] == 'm')
+			{
+				unsigned int count;
+				auto res = graph->getMaxNodeEdges(&count);
+				std::cout << "{\n";
+
+				for (int i = 0; i < count; i++)
+					std::cout << "\t" << *res[i] << std::endl;
+
+				std::cout << "}\n";
+
+				delete[] res;
+			}
+		}
+		else if (n == 1) 
 		{
 			if (cmd[0] == '+')
 			{
@@ -101,7 +117,7 @@ int main()
 				
 				delete[] res;
 				delete node;
-			}
+			} 
 		}
 		else if (n == 2)
 		{
