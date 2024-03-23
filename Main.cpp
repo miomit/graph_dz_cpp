@@ -54,7 +54,9 @@ int main()
 
 		std::cout << "$ ";
 		
-		if (n == 1)
+		if (n == 0) {
+			std::cin >> cmd;
+		} else if (n == 1)
 		{
 			std::cin >> cmd >> buff;
 		}else
