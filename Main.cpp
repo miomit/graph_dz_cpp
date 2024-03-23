@@ -34,7 +34,7 @@ int main()
 	std::cout << "1) digraph\n" << "2) graph\n> ";
 	std::cin >> n;
 
-	if (n % 2 == 0) typeGraph = gne::ORIENTED;
+	if (n % 2 != 0) typeGraph = gne::ORIENTED;
 	else typeGraph = gne::UNORIENTED;
 
 	graph = new gne::Graph(typeGraph);
@@ -43,7 +43,7 @@ int main()
 	{
 		graph_to_png(graph);
 
-		std::cout << "(1-4): ";
+		std::cout << "1)[opr] [Node]\n2)[opr] [Node] [Node]\n3)[opr] [Node] [Node] [Text]\n> ";
 		std::cin >> n;
 		std::cout << "$ ";
 		if (n == 1)
