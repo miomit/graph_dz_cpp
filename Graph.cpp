@@ -73,7 +73,7 @@ bool gne::Graph::add(Edge* edge)
 	return true;
 }
 
-void gne::Graph::remove(Node* node)
+void gne::Graph::remove(Node* node)	
 {
 	for (int i = 0; i < this->_nodesSize; i++)
 	{
@@ -130,6 +130,36 @@ gne::Node* gne::Graph::findNode(Node* node)
 		if (*this->_nodes[i] == *node) return this->_nodes[i];
 	}
 	return nullptr;
+}
+
+gne::Edge** gne::Graph::findEdgesByNode(Node* node, unsigned int* count)
+{
+	auto res = new Edge*[this->_edgesSize];
+	int j = 0;
+
+	*count = 0;
+
+	for (int i = 0; i < this->_edgesSize; i++)
+	{
+		for (;j < this->_edgesSize; j++)
+		{
+			if (this->_typeEdge == ORIENTED && *this->_edges[j]->getNode1() == *node)
+			{
+				res[i] = this->_edges[j];
+				j++;
+				(*count)++;
+				break;
+			} else if (this->_typeEdge == UNORIENTED && this->_edges[j]->isNodeExist(*node))
+			{
+				res[i] = this->_edges[j];
+				j++;
+				(*count)++;
+				break;
+			}
+		}
+	}
+
+	return res;
 }
 
 std::ostream& gne::operator<<(std::ostream& os, const Graph& graph)

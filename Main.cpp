@@ -78,6 +78,21 @@ int main()
 				auto node = new gne::Node(buff);
 				graph->remove(node);
 				delete node;
+			} else if (cmd[0] == '?')
+			{
+				auto node = new gne::Node(buff);
+				unsigned int count;
+				auto res = graph->findEdgesByNode(node, &count);
+
+				std::cout << "{\n";
+
+				for (int i = 0; i < count; i++)
+					std::cout << "\t" << *res[i] << std::endl;
+
+				std::cout << "}\n";
+				
+				delete[] res;
+				delete node;
 			}
 		}
 		else if (n == 2)
