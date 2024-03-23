@@ -46,7 +46,9 @@ bool gne::Graph::add(Edge* edge)
 
 	auto node1 = findNode(edge->getNode1());
 	auto node2 = findNode(edge->getNode2());
-	auto label = edge->getLabel();
+	char label[50];
+
+	strcpy_s(label, sizeof(label), edge->getLabel());
 
 	if (node1 == nullptr || node2 == nullptr) return false;
 
