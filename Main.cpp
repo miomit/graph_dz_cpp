@@ -3,63 +3,69 @@
 
 #include <fstream>
 #include <cstringt.h>
+#include <iostream>
 
-int main()
+void graph_to_png(gne::Graph* graph)
 {
-	setlocale(LC_ALL, 0);
 	std::ofstream file("C:\\Users\\user_\\out.dot");
-
 	if (!file.is_open()) {
 		std::cerr << "Не удалось открыть файл для записи." << std::endl;
-		return 1;
+		return;
 	}
 
-	char buff[50];
-
-	auto graph = gne::Graph(gne::ORIENTED);
-
-	strcpy_s(buff, sizeof(buff), "A");
-	auto a = new gne::Node(buff);
-
-	strcpy_s(buff, sizeof(buff), "B");
-	auto b = new gne::Node(buff);
-
-	strcpy_s(buff, sizeof(buff), "C");
-	auto c = new gne::Node(buff);
-
-	strcpy_s(buff, sizeof(buff), "to");
-	auto k1 = new gne::Edge(a, b, gne::ORIENTED, buff);
-
-	strcpy_s(buff, sizeof(buff), "");
-	auto k2 = new gne::Edge(b, c, gne::ORIENTED, buff);
-
-	graph.add(a);
-	graph.add(b);
-	graph.add(c);
-
-	graph.add(k1);
-	graph.add(k2);
-
-	std::cout << graph << std::endl;
-
-	file << graph;
+	file << *graph;
 
 	file.close();
 
 	system("dot -Tpng -Gdpi=300й C:\\Users\\user_\\out.dot -o C:\\Users\\user_\\out.png");
+}
 
-	char text[] = "12|13";
-	char d[] = "|";
-
+int main()
+{
+	char buff[50];
 	int num_tokens;
+	int n;
+	gne::Graph* graph;
+	
+	std::cout << "1) digraph\n" << "2) graph\n> ";
+	std::cin >> n;
 
-	char** tokens = my_stl::split(text, '|', &num_tokens);
+	if (n % 2 == 0)
+		graph = new gne::Graph(gne::ORIENTED);
+	else
+		graph = new gne::Graph(gne::UNORIENTED);
 
-	printf("count: %d\n", num_tokens);
-	printf("tokens:\n");
-	for (int i = 0; i < num_tokens; i++) {
-		printf("%s\n", tokens[i]);
+	while (true)
+	{
+		graph_to_png(graph);
+
+		std::cout << "> ";
+		std::cin >> buff;
+
+		char** tokens = my_stl::split(buff, '_', &num_tokens);
+		
+		if (num_tokens == 2) 
+		{
+			if (tokens[0][0] == '+')
+			{
+				strcpy_s(buff, sizeof(buff), tokens[1]);
+				auto node = new gne::Node(buff);
+				if (!graph->add(node)) 
+				{
+					std::cout << "such a node exists" << std::endl;
+					delete node;
+				}
+			} else if (tokens[0][0] == '-')
+			{
+				strcpy_s(buff, sizeof(buff), tokens[1]);
+				auto node = new gne::Node(buff);
+				graph->remove(node);
+				delete node;
+			}
+		}
+
+		delete[] tokens;
 	}
-	std::cout << "---";
+
 	return 0;
 }
