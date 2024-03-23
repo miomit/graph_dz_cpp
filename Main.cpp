@@ -1,44 +1,50 @@
-#include <iostream>
 #include "Graph.hpp"
+
+#include <fstream>
+#include <cstringt.h>
 
 int main()
 {
-	char name[50] = "A";
-	auto a = new gne::Node(name);
-	name[0] = 'B';
-	auto b = new gne::Node(name);
-	auto c = new gne::Node(name);
-	name[0] = 'D';
-	auto d = new gne::Node(name);
+	setlocale(LC_ALL, 0);
+	std::ofstream file("C:\\Users\\user_\\out.dot");
 
-	std::cout << *a << "; hash = " << a->getHashCode() << std::endl;
-	std::cout << *b << "; hash = " << b->getHashCode() << std::endl;
-	std::cout << *c << "; hash = " << c->getHashCode() << std::endl;
-	std::cout << *d << "; hash = " << d->getHashCode() << std::endl;
+	if (!file.is_open()) {
+		std::cerr << "Не удалось открыть файл для записи." << std::endl;
+		return 1;
+	}
 
-	name[0] = 'E';
+	char buff[50];
 
-	auto k = new gne::Edge(a, b, gne::UNORIENTED, name);
-	auto k2 = new gne::Edge(b, a, gne::ORIENTED, name);
+	auto graph = gne::Graph(gne::ORIENTED);
 
+	strcpy_s(buff, sizeof(buff), "A");
+	auto a = new gne::Node(buff);
 
-	std::cout << *k << "; hash = " << k->getHashCode() << std::endl;
-	std::cout << *k2 << "; hash = " << k2->getHashCode() << std::endl;
+	strcpy_s(buff, sizeof(buff), "B");
+	auto b = new gne::Node(buff);
 
-	std::cout << (*k2 == *k) << std::endl;
+	strcpy_s(buff, sizeof(buff), "C");
+	auto c = new gne::Node(buff);
 
-	auto graph = gne::Graph(name);
+	strcpy_s(buff, sizeof(buff), "to");
+	auto k1 = new gne::Edge(a, b, gne::ORIENTED, buff);
 
-	graph.add(k);
-	graph.add(k);
-	graph.add(k);
-	graph.add(k);
+	strcpy_s(buff, sizeof(buff), "");
+	auto k2 = new gne::Edge(b, c, gne::ORIENTED, buff);
 
-	std::cout << std::endl;
-	std::cout << std::endl;
+	graph.add(a);
+	graph.add(b);
+	graph.add(c);
 
-	for (int i = 0; i < graph.getEdgesSize(); i++)
-		std::cout << *graph.getEdges()[i] << "; hash = " << graph.getEdges()[i]->getHashCode() << std::endl;
+	graph.add(k1);
+	graph.add(k2);
 
+	std::cout << graph << std::endl;
+
+	file << graph;
+
+	file.close();
+
+	system("dot -Tpng -Gdpi=300й C:\\Users\\user_\\out.dot -o C:\\Users\\user_\\out.png");
 	return 0;
 }
