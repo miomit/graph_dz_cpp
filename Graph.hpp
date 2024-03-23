@@ -15,6 +15,8 @@ namespace gne
 		void remove(Node* node);
 		void remove(Edge* edge);
 
+		Node* findNode(Node* node);
+
 		Node** getNodes() { return _nodes; }
 		unsigned int getNodesSize() { return _nodesSize; }
 

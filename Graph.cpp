@@ -111,6 +111,15 @@ void gne::Graph::remove(Edge* edge)
 	}
 }
 
+gne::Node* gne::Graph::findNode(Node* node)
+{
+	for (int i = 0; i < this->_nodesSize; i++)
+	{
+		if (*this->_nodes[i] == *node) return this->_nodes[i];
+	}
+	return nullptr;
+}
+
 std::ostream& gne::operator<<(std::ostream& os, const Graph& graph)
 {
 	if (graph._typeEdge == ORIENTED) os << "digraph";
