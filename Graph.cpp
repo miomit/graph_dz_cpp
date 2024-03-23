@@ -1,4 +1,5 @@
 #include "Graph.hpp"
+#include "MySTL.hpp"
 
 gne::Graph::Graph(TypeEdge typeEdge)
 {
@@ -166,6 +167,48 @@ gne::Edge** gne::Graph::findEdgesByNode(Node* node, unsigned int* count)
 				break;
 			}
 		}
+	}
+
+	return res;
+}
+
+gne::Node** gne::Graph::getMaxNodeEdges(unsigned int* node_count)
+{
+	unsigned int max_count = 0;
+	unsigned int count;
+	*node_count = 0;
+
+	for (int i = 0; i < this->_nodesSize; i++)
+	{
+		auto e = findEdgesByNode(this->_nodes[i], &count);
+
+		max_count = my_stl::max(max_count, count);
+
+		if (count == max_count) (*node_count)++;
+		else *node_count = 1;
+
+		delete[] e;
+	}
+
+	auto res = new Node*[*node_count];
+
+	int j = 0;
+
+	for (int i = 0; i < *node_count; i++)
+	{
+		for (; j < this->_nodesSize; j++)
+		{
+			auto e = findEdgesByNode(this->_nodes[j], &count);
+
+			delete[] e;
+
+			if (count == max_count)
+			{
+				res[i] = this->_nodes[j];
+				break;
+			}
+		}
+		
 	}
 
 	return res;

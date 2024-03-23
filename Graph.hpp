@@ -18,6 +18,8 @@ namespace gne
 		Node* findNode(Node* node);
 		Edge** findEdgesByNode(Node* node, unsigned int* count);
 
+		Node** getMaxNodeEdges(unsigned int* node_count);
+
 		Node** getNodes() { return _nodes; }
 		unsigned int getNodesSize() { return _nodesSize; }
 
