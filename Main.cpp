@@ -73,6 +73,11 @@ int main()
 			continue;
 		}
 
+		if (std::cin.eof()) {
+			std::cout << "Ctrl + D\n";
+			break;
+		}
+
 		if (n == 0)
 		{
 			if (cmd[0] == 'm')

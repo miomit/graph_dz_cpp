@@ -30,7 +30,11 @@ namespace gne
 
 		void operator delete[](void* graph);
 
+		Graph& operator+=(const Graph& graph);
+
 		friend std::ostream& operator<<(std::ostream& os, const Graph& graph);
+		friend bool operator==(const Graph& graph1, const Graph& graph2);
+		friend Graph& operator+=(Graph& graph1, const Graph& graph2);
 	private:
 		TypeEdge _typeEdge;
 

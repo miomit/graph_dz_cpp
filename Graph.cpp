@@ -291,7 +291,6 @@ void gne::Graph::operator delete[](void* graph)
 }
 
 
-
 std::ostream& gne::operator<<(std::ostream& os, const Graph& graph)
 {
 	if (graph._typeEdge == ORIENTED) os << "digraph";
@@ -310,4 +309,37 @@ std::ostream& gne::operator<<(std::ostream& os, const Graph& graph)
 	os << "}";
 
 	return os;
+}
+
+bool gne::operator==(const Graph& graph1, const Graph& graph2)
+{
+	if (graph1._nodesSize != graph2._nodesSize) return false;
+	if (graph1._edgesSize != graph2._edgesSize) return false;
+
+	for (auto i = 0; i < graph1._nodesSize; i++)
+	{
+		if (!(*graph1._nodes[i] == *graph2._nodes[i])) return false;
+	}
+
+	for (auto i = 0; i < graph1._edgesSize; i++)
+	{
+		if (!(*graph1._edges[i] == *graph2._edges[i])) return false;
+	}
+
+	return true;
+}
+
+gne::Graph& gne::operator+=(Graph& graph1, const Graph& graph2)
+{
+	for (auto i = 0; i < graph2._nodesSize; i++)
+	{
+		graph1.add(graph2._nodes[i]);
+	}
+
+	for (auto i = 0; i < graph2._edgesSize; i++)
+	{
+		graph1.add(graph2._edges[i]);
+	}
+
+	return graph1;
 }
