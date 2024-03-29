@@ -1,6 +1,8 @@
 #include "Graph.hpp"
 #include "MySTL.hpp"
 
+#include <cstring>
+
 gne::Graph::Graph(TypeEdge typeEdge)
 {
 	this->_typeEdge = typeEdge;
@@ -49,7 +51,7 @@ bool gne::Graph::add(Edge* edge)
 	auto node2 = findNode(edge->getNode2());
 	char label[50];
 
-	strcpy_s(label, sizeof(label), edge->getLabel());
+	strcpy(label, edge->getLabel());
 
 	if (node1 == nullptr || node2 == nullptr) return false;
 
@@ -182,10 +184,11 @@ gne::Node** gne::Graph::getMaxNodeEdges(unsigned int* node_count)
 	{
 		auto e = findEdgesByNode(this->_nodes[i], &count);
 
-		max_count = my_stl::max(max_count, count);
-
 		if (count == max_count) (*node_count)++;
 		else *node_count = 1;
+
+		max_count = my_stl::max(max_count, count);
+
 
 		delete[] e;
 	}

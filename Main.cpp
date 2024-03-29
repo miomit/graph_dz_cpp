@@ -2,14 +2,14 @@
 #include "MySTL.hpp"
 
 #include <fstream>
-#include <cstringt.h>
+#include <cstring>
 #include <iostream>
 
 void graph_to_png(gne::Graph* graph)
 {
-	std::ofstream file("C:\\Users\\user_\\out.dot");
+	std::ofstream file("/home/miomit/Р”РѕРєСѓРјРµРЅС‚С‹/GitHub/graph_dz_cpp/out/out.dot");
 	if (!file.is_open()) {
-		std::cerr << "Не удалось открыть файл для записи." << std::endl;
+		std::cerr << "can open out.dot" << std::endl;
 		return;
 	}
 
@@ -17,7 +17,7 @@ void graph_to_png(gne::Graph* graph)
 
 	file.close();
 
-	system("dot -Tpng -Gdpi=300й C:\\Users\\user_\\out.dot -o C:\\Users\\user_\\out.png");
+	system("dot -Tpng -Gdpi=300 /home/miomit/Р”РѕРєСѓРјРµРЅС‚С‹/GitHub/graph_dz_cpp/out/out.dot -o /home/miomit/Р”РѕРєСѓРјРµРЅС‚С‹/GitHub/graph_dz_cpp/out/out.png");
 }
 
 int main()
@@ -129,7 +129,7 @@ int main()
 
 				auto node2 = new gne::Node(buff2);
 
-				strcpy_s(buff, sizeof(buff), "");
+				strcpy(buff, "");
 				auto edge = new gne::Edge(node1, node2, typeGraph, buff);
 
 				if (!graph->add(edge))
@@ -146,7 +146,7 @@ int main()
 				auto node1 = new gne::Node(buff);
 				auto node2 = new gne::Node(buff2);
 
-				strcpy_s(buff, sizeof(buff), "");
+				strcpy(buff, "");
 				auto edge = new gne::Edge(node1, node2, typeGraph, buff);
 
 				graph->remove(edge);

@@ -1,5 +1,5 @@
 #include "MySTL.hpp"
-#include <string.h>
+#include <cstring>
 
 int my_stl::str_to_hash(const char* str)
 {
@@ -81,12 +81,12 @@ char** my_stl::split(char* str, char delim, int* count)
     int token_index = 0;
     char* next_token1 = NULL;
 
-    char* token = strtok_s(str, &delim, &next_token1);
+    char* token = strtok_r(str, &delim, &next_token1);
 
     while (token != NULL)
     {
         tokens[token_index++] = token;
-        token = strtok_s(NULL, &delim, &next_token1);
+        token = strtok_r(NULL, &delim, &next_token1);
     }
 
     tokens[token_index] = NULL;

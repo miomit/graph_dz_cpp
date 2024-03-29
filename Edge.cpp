@@ -1,7 +1,7 @@
 #include "Edge.hpp"
 #include "MySTL.hpp"
 
-#include <cstringt.h>
+#include <cstring>
 
 gne::Edge::Edge(Node* node1, Node* node2, TypeEdge typeEdge, char label[50])
 {
@@ -10,7 +10,7 @@ gne::Edge::Edge(Node* node1, Node* node2, TypeEdge typeEdge, char label[50])
 
     this->_typeEdge = typeEdge;
 
-    strcpy_s(this->_label, sizeof(this->_label), label);
+    strcpy(this->_label, label);
 
     if (typeEdge == UNORIENTED)
     {
