@@ -161,7 +161,7 @@ gne::Edge** gne::Graph::findEdgesByNode(Node* node, unsigned int* count)
 				j++;
 				(*count)++;
 				break;
-			} else if (this->_typeEdge == UNORIENTED && this->_edges[j]->isNodeExist(*node))
+			} else if (this->_typeEdge == UNORIENTED && (*this->_edges[j]->getNode1() == *node || *this->_edges[j]->getNode2() == *node))
 			{
 				res[i] = this->_edges[j];
 				j++;
