@@ -174,6 +174,83 @@ gne::Edge** gne::Graph::findEdgesByNode(Node* node, unsigned int* count)
 	return res;
 }
 
+
+bool gne::Graph::isReachesNodeToNode(Node* node1, Node* node2, bool* viewedNodes)
+{
+	std::cout << "N1 = " << *node1 << std::endl;
+	std::cout << "N2 = " << *node2 << std::endl;
+	if (*node1 == *node2) return true;
+
+	bool isViewedNodesClear = false;
+
+	if (viewedNodes == nullptr)
+	{
+		std::cout << "Create viewedNodes" << std::endl;
+		viewedNodes = new bool[this->_nodesSize];
+		for (int i = 0; i < this->_nodesSize; i++) viewedNodes[i] = false;
+		isViewedNodesClear = true;
+	}
+
+	for (int i = 0; i < this->_nodesSize; i++)
+	{
+		std::cout << *this->_nodes[i] << " vs " << *node1 << std::endl;
+		if (*this->_nodes[i] == *node1)
+		{
+			std::cout << *this->_nodes[i] << " == " << *node1 << std::endl;
+			std::cout << "viewedNodes[i] == " << viewedNodes[i] << std::endl;
+			if (!viewedNodes[i]) 
+			{
+				viewedNodes[i] = true;
+				unsigned int count;
+				
+				auto edges = this->findEdgesByNode(this->_nodes[i], &count);
+
+				std::cout << "edges {\n";
+				for (int k = 0; k < count; k++) std::cout << *edges[k] << std::endl;
+				std::cout << "}\n";
+
+				for (int k = 0; k < count; k++)
+				{
+					Node *node;
+					if (this->_typeEdge == UNORIENTED)
+					{
+						node = *edges[k]->getNode1() == *node1 ? edges[k]->getNode2() : edges[k]->getNode1();
+					}
+					else
+					{
+						if (!(*edges[k]->getNode1() == *node1)) continue;
+
+						node = edges[k]->getNode2();
+					}
+
+					std::cout << "Node Find: " << *node;
+
+					if (this->isReachesNodeToNode(node, node2, viewedNodes))
+					{
+						delete[] edges;
+						if (isViewedNodesClear) delete[] viewedNodes;
+						return true;
+					}
+				}
+
+				std::cout << "no edges\n";
+
+				delete[] edges;
+				return false;
+
+			} 
+			else
+			{
+				if (isViewedNodesClear) delete[] viewedNodes;
+				return false;
+			}
+		}
+	}
+
+	if (isViewedNodesClear) delete[] viewedNodes;
+	return false;
+}
+
 gne::Node** gne::Graph::getMaxNodeEdges(unsigned int* node_count)
 {
 	unsigned int max_count = 0;

@@ -155,6 +155,25 @@ int main()
 				delete node1;
 				delete node2;
 			}
+			else if (cmd[0] == '?')
+			{
+				auto node1 = new gne::Node(buff);
+				auto node2 = new gne::Node(buff2);
+
+				strcpy(buff, "");
+
+				if (graph->isReachesNodeToNode(node1, node2))
+				{
+					std::cout << "Yes" << std::endl;
+				}
+				else
+				{
+					std::cout << "No" << std::endl;
+				}
+				
+				delete node1;
+				delete node2;
+			}
 		} 
 		else if (n == 3)
 		{
