@@ -14,6 +14,23 @@ gne::Graph::Graph(TypeEdge typeEdge)
 	this->_edges = nullptr;
 }
 
+gne::Graph::~Graph()
+{
+	for (auto i = 0; i < _nodesSize; i++)
+	{
+		delete this->_nodes[i];
+	}
+
+	delete [] this->_nodes;
+
+	for (auto i = 0; i < _edgesSize; i++)
+	{
+		delete this->_edges[i];
+	}
+
+	delete [] this->_edges;
+}
+
 bool gne::Graph::add(Node* node)
 {
 	for (int i = 0; i < this->_nodesSize; i++)
@@ -51,7 +68,7 @@ bool gne::Graph::add(Edge* edge)
 	auto node2 = findNode(edge->getNode2());
 	char label[50];
 
-	strcpy(label, edge->getLabel());
+	strncpy(label, edge->getLabel(), sizeof(label));
 
 	if (node1 == nullptr || node2 == nullptr) return false;
 
@@ -333,12 +350,29 @@ gne::Graph& gne::operator+=(Graph& graph1, const Graph& graph2)
 {
 	for (auto i = 0; i < graph2._nodesSize; i++)
 	{
-		graph1.add(graph2._nodes[i]);
+		auto node = new gne::Node(graph2._nodes[i]->getName());
+		if (!graph1.add(node))
+		{
+			delete node;
+		}
 	}
 
 	for (auto i = 0; i < graph2._edgesSize; i++)
 	{
-		graph1.add(graph2._edges[i]);
+		auto node1 = new gne::Node(graph2._edges[i]->getNode1()->getName());
+
+		auto node2 = new gne::Node(graph2._edges[i]->getNode2()->getName());
+	
+
+		auto edge = new gne::Edge(node1, node2, graph2._edges[i]->getTypeEdge(), graph2._edges[i]->getLabel());
+
+		if (!graph1.add(edge))
+		{
+			delete edge;
+		}
+
+		delete node1;
+		delete node2;
 	}
 
 	return graph1;

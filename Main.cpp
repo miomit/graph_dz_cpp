@@ -39,6 +39,19 @@ int main()
 
 	graph = new gne::Graph(typeGraph);
 
+	auto graph2 = new gne::Graph(typeGraph);
+
+	strncpy(buff, "A", sizeof(buff));
+	auto node1 = new gne::Node(buff);
+	graph2->add(node1);
+	
+	strncpy(buff, "C", sizeof(buff));
+	auto node2 = new gne::Node(buff);
+	graph2->add(node2);
+
+	strncpy(buff, "", sizeof(buff));
+	graph2->add(new gne::Edge(node1, node2, typeGraph, buff));
+
 	while (true)
 	{
 		graph_to_png(graph);
@@ -92,6 +105,16 @@ int main()
 				std::cout << "}\n";
 
 				delete[] res;
+			} else if (cmd[0] == 's')
+			{
+				if (*graph2 == *graph)
+					std::cout << "Yes" << std::endl;
+				else
+					std::cout << "No" << std::endl;
+			}
+			else if (cmd[0] == 'a')
+			{
+				*graph += *graph2;
 			}
 		}
 		else if (n == 1) 
@@ -134,7 +157,7 @@ int main()
 
 				auto node2 = new gne::Node(buff2);
 
-				strcpy(buff, "");
+				strncpy(buff, "", sizeof(buff));
 				auto edge = new gne::Edge(node1, node2, typeGraph, buff);
 
 				if (!graph->add(edge))
@@ -151,7 +174,7 @@ int main()
 				auto node1 = new gne::Node(buff);
 				auto node2 = new gne::Node(buff2);
 
-				strcpy(buff, "");
+				strncpy(buff, "", sizeof(buff));
 				auto edge = new gne::Edge(node1, node2, typeGraph, buff);
 
 				graph->remove(edge);
@@ -165,7 +188,7 @@ int main()
 				auto node1 = new gne::Node(buff);
 				auto node2 = new gne::Node(buff2);
 
-				strcpy(buff, "");
+				strncpy(buff, "", sizeof(buff));
 
 				if (graph->isReachesNodeToNode(node1, node2))
 				{
@@ -201,6 +224,9 @@ int main()
 			}
 		}
 	}
+
+	delete graph;
+	delete graph2;
 
 	return 0;
 }

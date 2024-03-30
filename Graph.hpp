@@ -9,6 +9,8 @@ namespace gne
 	public:
 		Graph(TypeEdge typeEdge);
 
+		~Graph();
+
 		bool add(Node* node);
 		bool add(Edge* edge);
 
@@ -29,8 +31,6 @@ namespace gne
 		unsigned int getEdgesSize() { return _edgesSize; }
 
 		void operator delete[](void* graph);
-
-		Graph& operator+=(const Graph& graph);
 
 		friend std::ostream& operator<<(std::ostream& os, const Graph& graph);
 		friend bool operator==(const Graph& graph1, const Graph& graph2);

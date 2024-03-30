@@ -10,7 +10,7 @@ gne::Edge::Edge(Node* node1, Node* node2, TypeEdge typeEdge, char label[50])
 
     this->_typeEdge = typeEdge;
 
-    strcpy(this->_label, label);
+    strncpy(this->_label, label, sizeof(this->_label));
 
     if (typeEdge == UNORIENTED)
     {

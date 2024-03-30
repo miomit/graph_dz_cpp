@@ -5,16 +5,16 @@
 
 gne::Node::Node(char name[50])
 {
-	strcpy(this->_name, name);
-	strcpy(this->_label, name);
+	strncpy(this->_name, name, sizeof(this->_name));
+	strncpy(this->_label, name, sizeof(this->_label));
 
 	this->_hashCode = my_stl::str_to_hash(name);
 }
 
 gne::Node::Node(char name[50], char label[50])
 {
-	strcpy(this->_name, name);
-	strcpy(this->_label, label);
+	strncpy(this->_name, name, sizeof(this->_name));
+	strncpy(this->_label, label, sizeof(this->_label));
 
 	this->_hashCode = my_stl::str_to_hash(name);
 }
